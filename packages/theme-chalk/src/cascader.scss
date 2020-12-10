@@ -32,9 +32,11 @@
     .el-icon-arrow-down {
       transition: transform .3s;
       font-size: 14px;
+      font-weight: 900;
 
       @include when(reverse) {
         transform: rotateZ(180deg);
+        color: $--custom-color-primary;
       }
     }
 
