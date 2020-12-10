@@ -483,6 +483,8 @@ $--cascader-node-background-hover: $--background-color-base !default;
 $--cascader-node-color-disabled:$--color-text-placeholder !default;
 $--cascader-color-empty:$--color-text-placeholder !default;
 $--cascader-tag-background: #f0f2f5;
+$--cascader-tag-background-new: #5dbdea;
+$--cascader-tag-background-opacity: rgba($--cascader-tag-background-new, 0.16);
 
 /* Group
 -------------------------- */
