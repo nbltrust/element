@@ -50,6 +50,15 @@
       }
     },
 
+    watch: {
+      isChecked(val) {
+        if (this.config.onlyLeafMulti) {
+          const { panel } = this;
+          panel.clearNotInCurrentPathNodes(this.node);
+        }
+      }
+    },
+  
     methods: {
       handleExpand() {
         const { panel, node, isDisabled, config } = this;
@@ -93,9 +102,13 @@
 
       renderPrefix(h) {
         const { isLeaf, isChecked, config } = this;
-        const { checkStrictly, multiple } = config;
+        const { checkStrictly, multiple, onlyLeafMulti } = config;
 
-        if (multiple) {
+        if (onlyLeafMulti && isLeaf && multiple) {
+          return this.renderCheckbox(h);
+        } else if (onlyLeafMulti && !isLeaf && multiple) {
+          return null;
+        } else if (multiple) {
           return this.renderCheckbox(h);
         } else if (checkStrictly) {
           return this.renderRadio(h);
@@ -103,6 +116,15 @@
           return this.renderCheckIcon(h);
         }
 
+        return null;
+      },
+
+      renderNumber(h) {
+        const { isLeaf, config } = this;
+        const { multiple, onlyLeafMulti } = config;
+        if (!isLeaf && multiple && onlyLeafMulti) {
+          return this.renderNumberIcon(h);
+        }
         return null;
       },
 
@@ -178,6 +200,14 @@
         );
       },
 
+      renderNumberIcon(h) {
+        const { node } = this;
+        const count = node.calculateCheckedLeaf(node);
+        return (
+          count > 0 ? <div class="selected-number">{ count }</div> : ''
+        );
+      },
+
       renderContent(h) {
         const { panel, node } = this;
         const render = panel.renderLabelFn;
@@ -238,9 +268,25 @@
           {...events}>
           { this.renderPrefix(h) }
           { this.renderContent(h) }
+          { this.renderNumber(h) }
           { this.renderPostfix(h) }
         </li>
       );
     }
   };
 </script>
+
+<style scoped>
+.selected-number {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 16px;
+  text-align: center;
+  background-color: #8f93ff;
+}
+</style>
+

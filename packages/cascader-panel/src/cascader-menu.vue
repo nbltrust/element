@@ -17,6 +17,7 @@ export default {
   },
 
   props: {
+    // 该子菜单列表的 node 列表
     nodes: {
       type: Array,
       required: true

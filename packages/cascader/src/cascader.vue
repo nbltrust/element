@@ -70,6 +70,7 @@
         v-show="dropDownVisible"
         ref="popper"
         :class="['el-popper', 'el-cascader__dropdown', popperClass]">
+        <!-- 下拉列表 -->
         <el-cascader-panel
           ref="panel"
           v-show="!filtering"
@@ -80,6 +81,7 @@
           :render-label="$scopedSlots.default"
           @expand-change="handleExpandChange"
           @close="toggleDropDownVisible(false)"></el-cascader-panel>
+        <!-- 展示搜索结果 -->
         <el-scrollbar
           ref="suggestionPanel"
           v-if="filterable"
@@ -225,7 +227,11 @@ export default {
       type: Function,
       default: () => (() => {})
     },
-    popperClass: String
+    popperClass: String,
+    onlyLeafMulti: {
+      type: Boolean,
+      default: false
+    }
   },
 
   data() {
@@ -233,8 +239,8 @@ export default {
       dropDownVisible: false,
       checkedValue: this.value || null,
       inputHover: false,
-      inputValue: null,
-      presentText: null,
+      inputValue: null, // 单选时，v-model 展示选中结果, 多选时，该值为空(不走这个)
+      presentText: null, // 多选时，presentText 也为空(则不会出现两个 placeholder 内容叠加)
       presentTags: [],
       checkedNodes: [],
       filtering: false,
@@ -259,6 +265,7 @@ export default {
     },
     config() {
       const config = this.props || {};
+      config.onlyLeafMulti = this.onlyLeafMulti;
       const { $attrs } = this;
 
       Object
