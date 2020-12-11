@@ -227,11 +227,7 @@ export default {
       type: Function,
       default: () => (() => {})
     },
-    popperClass: String,
-    onlyLeafMulti: {
-      type: Boolean,
-      default: false
-    }
+    popperClass: String
   },
 
   data() {
@@ -265,7 +261,6 @@ export default {
     },
     config() {
       const config = this.props || {};
-      config.onlyLeafMulti = this.onlyLeafMulti;
       const { $attrs } = this;
 
       Object

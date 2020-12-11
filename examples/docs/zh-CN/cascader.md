@@ -905,7 +905,7 @@
   export default {
     data() {
       return {
-        props: { multiple: true },
+        props: { multiple: true, onlyLeafMulti: true },
         options: [{
           value: 1,
           label: '东南',
@@ -978,7 +978,8 @@
   <span class="demonstration">多选选择任意一级选项</span>
   <el-cascader
     :options="options"
-    :props="{ multiple: true, checkStrictly: true }"
+    v-model="value"
+    :props="{ multiple: true, checkStrictly: true, onlyLeafMulti: true }"
     clearable></el-cascader>
 </div>
 
@@ -986,6 +987,7 @@
   export default {
     data() {
       return {
+        value: [['zhinan', 'daohang', 'cexiangdaohang'], ['zhinan', 'daohang', 'dingbudaohang']],
         options: [{
           value: 'zhinan',
           label: '指南',

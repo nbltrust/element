@@ -42,7 +42,8 @@ const DefaultProps = {
   children: 'children',
   leaf: 'leaf',
   disabled: 'disabled',
-  hoverThreshold: 500
+  hoverThreshold: 500,
+  onlyLeafMulti: false
 };
 
 const isLeaf = el => !el.getAttribute('aria-owns');
@@ -120,7 +121,7 @@ export default {
       return merge({ ...DefaultProps }, this.props || {});
     },
     multiple() {
-      return this.config.multiple;
+      return this.config.multiple || this.config.onlyLeafMulti;
     },
     checkStrictly() {
       return this.config.checkStrictly;
@@ -404,8 +405,9 @@ export default {
           }
         });
       this.$nextTick(() => {
-        this.calculateCheckedNodePaths();
+        this.calculateMultiCheckedValue(); // update panel.checkedValue []
         this.syncActivePath();
+        this.calculateCheckedNodePaths();
       });
     }
   }
