@@ -41,7 +41,7 @@
     }
 
     .el-icon-circle-close:hover {
-      color: $--input-clear-hover-color;
+      color: $--custom-color-primary;
     }
 
     @include when(focus) {
@@ -101,6 +101,7 @@
       margin: 2px 0 2px 6px;
       text-overflow: ellipsis;
       background: $--cascader-tag-background-opacity;
+      color: $--custom-color-tag-info;
 
       &:not(.is-hit) {
         border-color: transparent;
@@ -114,11 +115,11 @@
 
       .el-icon-close {
         flex: none;
-        background-color: $--color-text-placeholder;
-        color: $--color-white;
+        color: $--custom-color-primary;
 
         &:hover {
-          background-color: $--color-text-secondary;
+          background-color: unset;
+          color: $--custom-color-primary;
         }
       }
     }
