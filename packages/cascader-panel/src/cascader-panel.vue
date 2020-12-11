@@ -161,6 +161,13 @@ export default {
     if (!isEmpty(this.value)) {
       this.syncCheckedValue();
     }
+    if (this.config.onlyLeafMulti) {
+      // onlyLeafMulit 模式下，下拉菜单默认展开两级
+      const allN = this.getFlattedNodes(false);
+      if (!isEmpty(allN)) {
+        this.handleExpand(allN[0]);
+      }
+    }
   },
 
   methods: {
