@@ -275,18 +275,3 @@
     }
   };
 </script>
-
-<style scoped>
-.selected-number {
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-  color: #fff;
-  font-size: 10px;
-  font-weight: 400;
-  line-height: 16px;
-  text-align: center;
-  background-color: #8f93ff;
-}
-</style>
-
