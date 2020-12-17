@@ -156,6 +156,7 @@
             value={ node.checked }
             indeterminate={ node.indeterminate }
             disabled={ isDisabled }
+            class="pl-10"
             { ...events }
           ></el-checkbox>
         );
@@ -173,6 +174,7 @@
           <el-radio
             value={ checkedValue }
             label={ value }
+            class="pl-10"
             disabled={ isDisabled }
             onChange={ this.handleCheckChange }
             nativeOnClick={ stopPropagation }>
