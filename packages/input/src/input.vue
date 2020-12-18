@@ -12,7 +12,6 @@
       'el-input--suffix': $slots.suffix || suffixIcon || clearable || showPassword
     }
     ]"
-    class="test-czc1111 haha test-czc2222333"
     @mouseenter="hovering = true"
     @mouseleave="hovering = false"
   >
