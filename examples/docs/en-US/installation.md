@@ -5,7 +5,7 @@
 Installing with npm is recommended and it works seamlessly with [webpack](https://webpack.js.org/).
 
 ```shell
-npm i element-ui -S
+npm i jp-element-ui -S
 ```
 
 ### CDN

@@ -29,9 +29,9 @@
       ],
       "plugins": [
         ["module-resolver", {
-          "root": ["element-ui"],
+          "root": ["jp-element-ui"],
           "alias": {
-            "element-ui/src": "element-ui/lib"
+            "jp-element-ui/src": "jp-element-ui/lib"
           }
         }]
       ]

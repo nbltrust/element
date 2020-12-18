@@ -19,7 +19,7 @@ const webpackConfig = {
     docs: './examples/entry.js'
   } : (isPlay ? './examples/play.js' : './examples/entry.js'),
   output: {
-    path: path.resolve(process.cwd(), './examples/element-ui/'),
+    path: path.resolve(process.cwd(), './examples/jp-element-ui/'),
     publicPath: process.env.CI_ENV || '',
     filename: '[name].[hash:7].js',
     chunkFilename: isProd ? '[name].[hash:7].js' : '[name].js'
@@ -31,7 +31,7 @@ const webpackConfig = {
   },
   devServer: {
     host: '0.0.0.0',
-    port: 8085,
+    port: 18085,
     publicPath: '/',
     hot: true
   },
@@ -152,7 +152,7 @@ if (isProd) {
     cacheGroups: {
       vendor: {
         test: /\/src\//,
-        name: 'element-ui',
+        name: 'jp-element-ui',
         chunks: 'all'
       }
     }

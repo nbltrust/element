@@ -67,13 +67,13 @@ For Vue 3.0, we recommend using [Element Plus](https://github.com/element-plus/e
 
 ## Install
 ```shell
-npm install element-ui -S
+npm install jp-element-ui -S
 ```
 
 ## Quick Start
 ``` javascript
 import Vue from 'vue'
-import Element from 'element-ui'
+import Element from 'jp-element-ui'
 
 Vue.use(Element)
 
@@ -82,7 +82,7 @@ import {
   Select,
   Button
   // ...
-} from 'element-ui'
+} from 'jp-element-ui'
 
 Vue.component(Select.name, Select)
 Vue.component(Button.name, Button)

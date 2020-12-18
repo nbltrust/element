@@ -112,21 +112,21 @@
 </template>
 
 <script>
-import Popper from 'element-ui/src/utils/vue-popper';
-import Clickoutside from 'element-ui/src/utils/clickoutside';
-import Emitter from 'element-ui/src/mixins/emitter';
-import Locale from 'element-ui/src/mixins/locale';
-import Migrating from 'element-ui/src/mixins/migrating';
-import ElInput from 'element-ui/packages/input';
-import ElTag from 'element-ui/packages/tag';
-import ElScrollbar from 'element-ui/packages/scrollbar';
-import ElCascaderPanel from 'element-ui/packages/cascader-panel';
-import AriaUtils from 'element-ui/src/utils/aria-utils';
-import { t } from 'element-ui/src/locale';
-import { isEqual, isEmpty, kebabCase } from 'element-ui/src/utils/util';
-import { isUndefined, isFunction } from 'element-ui/src/utils/types';
-import { isDef } from 'element-ui/src/utils/shared';
-import { addResizeListener, removeResizeListener } from 'element-ui/src/utils/resize-event';
+import Popper from 'jp-element-ui/src/utils/vue-popper';
+import Clickoutside from 'jp-element-ui/src/utils/clickoutside';
+import Emitter from 'jp-element-ui/src/mixins/emitter';
+import Locale from 'jp-element-ui/src/mixins/locale';
+import Migrating from 'jp-element-ui/src/mixins/migrating';
+import ElInput from 'jp-element-ui/packages/input';
+import ElTag from 'jp-element-ui/packages/tag';
+import ElScrollbar from 'jp-element-ui/packages/scrollbar';
+import ElCascaderPanel from 'jp-element-ui/packages/cascader-panel';
+import AriaUtils from 'jp-element-ui/src/utils/aria-utils';
+import { t } from 'jp-element-ui/src/locale';
+import { isEqual, isEmpty, kebabCase } from 'jp-element-ui/src/utils/util';
+import { isUndefined, isFunction } from 'jp-element-ui/src/utils/types';
+import { isDef } from 'jp-element-ui/src/utils/shared';
+import { addResizeListener, removeResizeListener } from 'jp-element-ui/src/utils/resize-event';
 import debounce from 'throttle-debounce/debounce';
 
 const { keys: KeyCode } = AriaUtils;
