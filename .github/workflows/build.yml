@@ -31,6 +31,9 @@ jobs:
         with:
           node-version: '10.x'
 
+      - name: Install packages
+        run: npm install
+
       # Runs a set of commands using the runners shell
       - name: build lib
         run: npm run dist
