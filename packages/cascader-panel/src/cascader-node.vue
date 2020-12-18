@@ -147,7 +147,7 @@
           nativeOn: {}
         };
 
-        if (config.checkStrictly) { // when every node is selectable, click event should not trigger expand event.
+        if (config.checkStrictly || config.onlyLeafMulti) { // when every node is selectable, click event should not trigger expand event.
           events.nativeOn.click = stopPropagation;
         }
 
@@ -231,9 +231,10 @@
         isLeaf,
         isDisabled,
         config,
-        nodeId
+        nodeId,
+        node
       } = this;
-      const { expandTrigger, checkStrictly, multiple } = config;
+      const { expandTrigger, checkStrictly, multiple, onlyLeafMulti } = config;
       const disabled = !checkStrictly && isDisabled;
       const events = { on: {} };
 
@@ -251,6 +252,11 @@
       }
       if (isLeaf && !isDisabled && !checkStrictly && !multiple) {
         events.on.click = this.handleCheckChange;
+      }
+      if (isLeaf && !isDisabled && !checkStrictly && multiple && onlyLeafMulti) {
+        events.on.click = e => {
+          this.handleMultiCheckChange(!node.checked);
+        };
       }
 
       return (
