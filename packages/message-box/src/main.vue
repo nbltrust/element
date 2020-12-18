@@ -79,13 +79,13 @@
 </template>
 
 <script type="text/babel">
-  import Popup from 'element-ui/src/utils/popup';
-  import Locale from 'element-ui/src/mixins/locale';
-  import ElInput from 'element-ui/packages/input';
-  import ElButton from 'element-ui/packages/button';
-  import { addClass, removeClass } from 'element-ui/src/utils/dom';
-  import { t } from 'element-ui/src/locale';
-  import Dialog from 'element-ui/src/utils/aria-dialog';
+  import Popup from 'jp-element-ui/src/utils/popup';
+  import Locale from 'jp-element-ui/src/mixins/locale';
+  import ElInput from 'jp-element-ui/packages/input';
+  import ElButton from 'jp-element-ui/packages/button';
+  import { addClass, removeClass } from 'jp-element-ui/src/utils/dom';
+  import { t } from 'jp-element-ui/src/locale';
+  import Dialog from 'jp-element-ui/src/utils/aria-dialog';
 
   let messageBox;
   let typeMap = {

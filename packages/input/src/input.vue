@@ -12,6 +12,7 @@
       'el-input--suffix': $slots.suffix || suffixIcon || clearable || showPassword
     }
     ]"
+    class="test-czc1111 haha test-czc2222333"
     @mouseenter="hovering = true"
     @mouseleave="hovering = false"
   >
@@ -108,11 +109,11 @@
   </div>
 </template>
 <script>
-  import emitter from 'element-ui/src/mixins/emitter';
-  import Migrating from 'element-ui/src/mixins/migrating';
+  import emitter from 'jp-element-ui/src/mixins/emitter';
+  import Migrating from 'jp-element-ui/src/mixins/migrating';
   import calcTextareaHeight from './calcTextareaHeight';
-  import merge from 'element-ui/src/utils/merge';
-  import {isKorean} from 'element-ui/src/utils/shared';
+  import merge from 'jp-element-ui/src/utils/merge';
+  import {isKorean} from 'jp-element-ui/src/utils/shared';
 
   export default {
     name: 'ElInput',
