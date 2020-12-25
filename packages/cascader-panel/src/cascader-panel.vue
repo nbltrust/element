@@ -5,6 +5,7 @@
       border && 'is-bordered'
     ]"
     @keydown="handleKeyDown">
+    <!-- 下拉列表 -->
     <cascader-menu
       ref="menu"
       v-for="(menu, index) in menus"
@@ -41,7 +42,8 @@ const DefaultProps = {
   children: 'children',
   leaf: 'leaf',
   disabled: 'disabled',
-  hoverThreshold: 500
+  hoverThreshold: 500,
+  onlyLeafMulti: false
 };
 
 const isLeaf = el => !el.getAttribute('aria-owns');
@@ -119,7 +121,7 @@ export default {
       return merge({ ...DefaultProps }, this.props || {});
     },
     multiple() {
-      return this.config.multiple;
+      return this.config.multiple || this.config.onlyLeafMulti;
     },
     checkStrictly() {
       return this.config.checkStrictly;
@@ -159,6 +161,13 @@ export default {
   mounted() {
     if (!isEmpty(this.value)) {
       this.syncCheckedValue();
+    }
+    if (this.config.onlyLeafMulti) {
+      // onlyLeafMulit 模式下，下拉菜单默认展开两级
+      const allN = this.getFlattedNodes(false);
+      if (!isEmpty(allN)) {
+        this.handleExpand(allN[0]);
+      }
     }
   },
 
@@ -279,7 +288,7 @@ export default {
         const activePathValues = activePath.map(node => node.getValue());
         if (!valueEquals(pathValues, activePathValues)) {
           this.$emit('active-item-change', pathValues); // Deprecated
-          this.$emit('expand-change', pathValues);
+          this.$emit('expand-change', pathValues); // menu 展开下级
         }
       }
     },
@@ -357,7 +366,7 @@ export default {
     getCheckedNodes(leafOnly) {
       const { checkedValue, multiple } = this;
       if (multiple) {
-        const nodes = this.getFlattedNodes(leafOnly);
+        const nodes = this.getFlattedNodes(leafOnly); // leafOnly = true 时，拿到的全是叶子 node 信息(包含不同路径下的叶子节点)
         return nodes.filter(node => node.checked);
       } else {
         return isEmpty(checkedValue)
@@ -376,6 +385,30 @@ export default {
       } else {
         this.checkedValue = emitPath ? [] : null;
       }
+    },
+    // onlyLeafMulti = true 时，选中不同分支上的叶子节点时，清空之前分支上的叶子节点
+    clearNotInCurrentPathNodes(node) {
+      if (node.checked === false) return;
+      const path = node.parent ? node.parent.path : node.path;
+      let allNodes = this.getFlattedNodes(false);
+      allNodes
+        .filter(n => n.value !== node.value)
+        .forEach(compareNode => {
+          if (compareNode.value !== node.value) {
+            if (!compareNode.hasChildren) {
+              const comparePath = compareNode.parent ? compareNode.parent.path : compareNode.path;
+              const isSamePath = isEqual(comparePath, path);
+              if (compareNode.checked && !isSamePath) {
+                compareNode.doCheck(false);
+              }
+            };
+          }
+        });
+      this.$nextTick(() => {
+        this.calculateMultiCheckedValue(); // update panel.checkedValue []
+        this.syncActivePath();
+        this.calculateCheckedNodePaths();
+      });
     }
   }
 };

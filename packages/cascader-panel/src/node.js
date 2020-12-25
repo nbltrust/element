@@ -59,6 +59,29 @@ export default class Node {
     return !hasChildren;
   }
 
+  calculateCheckedLeaf(nodes) {
+    const { hasChildren } = this;
+    if (!hasChildren) return 0;
+    let count = 0;
+    count = this.numbAndPath(nodes.children, count);
+    return count;
+  }
+
+  // 递归被选中的叶子节点个数
+  numbAndPath(nodes, resData) {
+    const this_ = this;
+    if (Array.isArray(nodes) && nodes.length > 0) {
+      nodes.forEach(function(v, i) {
+        if (v.hasChildren) {
+          resData = this_.numbAndPath(v.children, resData);
+        } else {
+          resData += v.checked ? 1 : 0;
+        }
+      });
+    }
+    return resData;
+  }
+
   calculatePathNodes() {
     const nodes = [this];
     let parent = this.parent;
@@ -91,7 +114,7 @@ export default class Node {
 
   isSameNode(checkedValue) {
     const value = this.getValueByOption();
-    return this.config.multiple && Array.isArray(checkedValue)
+    return (this.config.multiple || this.config.onlyLeafMulti) && Array.isArray(checkedValue)
       ? checkedValue.some(val => isEqual(val, value))
       : isEqual(checkedValue, value);
   }
@@ -147,7 +170,6 @@ export default class Node {
   syncCheckState(checkedValue) {
     const value = this.getValueByOption();
     const checked = this.isSameNode(checkedValue, value);
-
     this.doCheck(checked);
   }
 

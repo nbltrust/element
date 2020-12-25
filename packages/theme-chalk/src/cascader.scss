@@ -32,14 +32,16 @@
     .el-icon-arrow-down {
       transition: transform .3s;
       font-size: 14px;
+      font-weight: 900;
 
       @include when(reverse) {
         transform: rotateZ(180deg);
+        color: $--custom-color-primary;
       }
     }
 
     .el-icon-circle-close:hover {
-      color: $--input-clear-hover-color;
+      color: $--custom-color-primary;
     }
 
     @include when(focus) {
@@ -98,7 +100,8 @@
       max-width: 100%;
       margin: 2px 0 2px 6px;
       text-overflow: ellipsis;
-      background: $--cascader-tag-background;
+      background: $--cascader-tag-background-opacity;
+      color: $--custom-color-tag-info;
 
       &:not(.is-hit) {
         border-color: transparent;
@@ -112,11 +115,11 @@
 
       .el-icon-close {
         flex: none;
-        background-color: $--color-text-placeholder;
-        color: $--color-white;
+        color: $--custom-color-primary;
 
         &:hover {
-          background-color: $--color-text-secondary;
+          background-color: unset;
+          color: $--custom-color-primary;
         }
       }
     }

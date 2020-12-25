@@ -19,19 +19,25 @@
   }
 
   &.el-tag--info {
-    background-color: mix($--tag-info-color, $--color-white, $backgroundColorWeight);
-    border-color: mix($--tag-info-color, $--color-white, $borderColorWeight);
-    color: mix($--tag-info-color, $--color-white, $fontColorWeight);
+    background-color: $--cascader-tag-background-opacity;
+    color: $--custom-color-tag-info;
+    // background-color: mix($--tag-info-color, $--color-white, $backgroundColorWeight);
+    // border-color: mix($--tag-info-color, $--color-white, $borderColorWeight);
+    // color: mix($--tag-info-color, $--color-white, $fontColorWeight);
 
     @include when(hit) {
       border-color: $--tag-info-color;
     }
 
     .el-tag__close {
-      color: mix($--tag-info-color, $--color-white, $fontColorWeight);
+      // color: mix($--tag-info-color, $--color-white, $fontColorWeight);
+      color: $--custom-color-primary;
+      background-color: unset;
+      font-weight: 900;
       &:hover {
-        color: $--color-white;
-        background-color: mix($--tag-info-color, $--color-white, $hoverColorWeight);
+        background-color: unset;
+        // color: $--color-white;
+        // background-color: mix($--tag-info-color, $--color-white, $hoverColorWeight);
       }
     }
   }
