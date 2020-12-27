@@ -97,11 +97,20 @@ export default {
   },
 
   methods: {
-    handleScroll() {
+    // czc: add function
+    scrollToTop() {
+      const wrap = this.wrap;
+      if (!wrap) return;
+      wrap.scrollTop = 0;
+      this.update();
+    },
+    handleScroll(evt) {
       const wrap = this.wrap;
 
       this.moveY = ((wrap.scrollTop * 100) / wrap.clientHeight);
       this.moveX = ((wrap.scrollLeft * 100) / wrap.clientWidth);
+      // czc: emit scroll event
+      this.$emit('scroll', evt);
     },
 
     update() {
