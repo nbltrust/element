@@ -3,7 +3,7 @@
     <div
       :class="[
         'el-message',
-        type && !iconClass ? `el-message--${ type }` : '',
+        type ? `el-message--${ type }` : '',
         center ? 'is-center' : '',
         showClose ? 'is-closable' : '',
         customClass
@@ -13,13 +13,13 @@
       @mouseenter="clearTimer"
       @mouseleave="startTimer"
       role="alert">
-      <i :class="iconClass" v-if="iconClass"></i>
-      <i :class="typeClass" v-else></i>
+      <i :class="iconClass" class="el-message__icon" v-if="iconClass"></i>
+      <i :class="typeClass" class="el-message__icon" v-else></i>
       <slot>
         <p v-if="!dangerouslyUseHTMLString" class="el-message__content">{{ message }}</p>
         <p v-else v-html="message" class="el-message__content"></p>
       </slot>
-      <i v-if="showClose" class="el-message__closeBtn el-icon-close" @click="close"></i>
+      <i v-if="showClose" class="el-message__closeBtn" :class="closeIconClass ? closeIconClass : 'el-icon-close'" @click="close"></i>
     </div>
   </transition>
 </template>
@@ -32,6 +32,7 @@
     error: 'error'
   };
 
+  // czc: 支持自定义 iconClass closeIconClass
   export default {
     data() {
       return {
@@ -40,6 +41,7 @@
         duration: 3000,
         type: 'info',
         iconClass: '',
+        closeIconClass: '',
         customClass: '',
         onClose: null,
         showClose: false,
@@ -53,8 +55,9 @@
 
     computed: {
       typeClass() {
-        return this.type && !this.iconClass
-          ? `el-message__icon el-icon-${ typeMap[this.type] }`
+        // czc: modify
+        return this.type
+          ? `el-icon-${ typeMap[this.type] }`
           : '';
       },
       positionStyle() {
