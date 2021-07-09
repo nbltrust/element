@@ -176,6 +176,18 @@
             {
               "path": "/avatar",
               "title": "Avatar 头像"
+            },
+            {
+              "path": "/skeleton",
+              "title": "Skeleton 骨架屏"
+            },
+            {
+              "path": "/empty",
+              "title": "Empty 空状态"
+            },
+            {
+              "path": "/descriptions",
+              "title": "Descriptions 描述列表"
             }
           ]
         },
@@ -470,6 +482,18 @@
             {
               "path": "/badge",
               "title": "Badge"
+            },
+            {
+              "path": "/skeleton",
+              "title": "Skeleton"
+            },
+            {
+              "path": "/empty",
+              "title": "Empty"
+            },
+            {
+              "path": "/descriptions",
+              "title": "Descriptions"
             }
           ]
         },
@@ -768,6 +792,18 @@
             {
               "path": "/badge",
               "title": "Badge"
+            },
+            {
+              "path": "/skeleton",
+              "title": "Skeleton"
+            },
+            {
+              "path": "/empty",
+              "title": "Empty"
+            },
+            {
+              "path": "/descriptions",
+              "title": "Descriptions"
             }
           ]
         },
@@ -1066,6 +1102,18 @@
             {
               "path": "/badge",
               "title": "Badge"
+            },
+            {
+              "path": "/skeleton",
+              "title": "Skeleton"
+            },
+            {
+              "path": "/empty",
+              "title": "Empty"
+            },
+            {
+              "path": "/descriptions",
+              "title": "Descriptions"
             }
           ]
         },
